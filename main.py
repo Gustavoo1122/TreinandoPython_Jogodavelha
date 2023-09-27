@@ -457,7 +457,6 @@ def vezjogador1():
 
     btn_escolha1.config(state = DISABLED)
     btn_escolha2.config(state = DISABLED)
-    btn_voltar.config(state = NORMAL)
 
 
 #Função para o jogador 2 começar
@@ -485,7 +484,6 @@ def vezjogador2():
 
     btn_escolha1.config(state = DISABLED)
     btn_escolha2.config(state = DISABLED)
-    btn_voltar.config(state = NORMAL)
 
 
 #Função para começar o jogo Jogador vs Jogador
