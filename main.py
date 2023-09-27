@@ -9,7 +9,7 @@ cor2 = '#c20a0a' #Vermelho
 cor3 = '#1510ad' #Azul
 cor4 = '#080a29' #Azul escuro
 cor5 = '#ffffff' #branco
-cor6 = 'f000000' #preto
+cor6 = '#000000' #preto
 
 
 #Criando a janela do programa
@@ -38,100 +38,10 @@ rodada = 0
 
 jogador_ganhou = 0
 
-
-#Criando os frames
-frame_titulo = Frame(janela, width = 800, height = 70, bg = cor4)
-frame_titulo.grid(row = 0, column = 0)
-
-frame_tabuleiro = Frame(janela, width = 800, height = 350, bg = cor4)
-frame_tabuleiro.grid(row = 1, column = 0)
-
-frame_escolha = Frame(frame_tabuleiro, width = 150, height = 100, bg = cor1)
-frame_escolha.place(x = 540, y = 10)
-
-frame_reiniciar = Frame(frame_tabuleiro, width = 150, height = 100, bg = cor1)
-frame_reiniciar.place(x = 10, y = 10)
-
-frame_jogador1 = Frame(janela, width = 300, height = 230, bg = cor2)
-frame_jogador1.place(x = 0, y = 410)
-
-frame_jogador2 = Frame(janela, width = 300, height = 230, bg = cor3)
-frame_jogador2.place(x = 400, y = 410)
-
-
-#Criando Título
-textotitulo = 'JOGO DA VELHA'
-tituloLabel = Label(frame_titulo, text = textotitulo, width = 41, height = 2, padx = 7, bg = cor4, fg = cor5, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-tituloLabel.place(x = 0, y = 0)
-
-
-#Criando função para o jogador 1 começar
-def vezjogador1():
-
-    btn_x1.config(state = NORMAL)
-    btn_x2.config(state = NORMAL)
-    btn_x3.config(state = NORMAL)
-    btn_x4.config(state = NORMAL)
-    btn_x5.config(state = NORMAL)
-    btn_x6.config(state = NORMAL)
-    btn_x7.config(state = NORMAL)
-    btn_x8.config(state = NORMAL)
-    btn_x9.config(state = NORMAL)
-
-    btn_o1.config(state = DISABLED)
-    btn_o2.config(state = DISABLED)
-    btn_o3.config(state = DISABLED)
-    btn_o4.config(state = DISABLED)
-    btn_o5.config(state = DISABLED)
-    btn_o6.config(state = DISABLED)
-    btn_o7.config(state = DISABLED)
-    btn_o8.config(state = DISABLED)
-    btn_o9.config(state = DISABLED)
-
-    btn_escolha1.config(state = DISABLED)
-    btn_escolha2.config(state = DISABLED)
-    btn_reiniciar.config(state = NORMAL)
-
-#Criando função para o jogador 2 começar
-def vezjogador2():
-
-    btn_o1.config(state = NORMAL)
-    btn_o2.config(state = NORMAL)
-    btn_o3.config(state = NORMAL)
-    btn_o4.config(state = NORMAL)
-    btn_o5.config(state = NORMAL)
-    btn_o6.config(state = NORMAL)
-    btn_o7.config(state = NORMAL)
-    btn_o8.config(state = NORMAL)
-    btn_o9.config(state = NORMAL)
-
-    btn_x1.config(state = DISABLED)
-    btn_x2.config(state = DISABLED)
-    btn_x3.config(state = DISABLED)
-    btn_x4.config(state = DISABLED)
-    btn_x5.config(state = DISABLED)
-    btn_x6.config(state = DISABLED)
-    btn_x7.config(state = DISABLED)
-    btn_x8.config(state = DISABLED)
-    btn_x9.config(state = DISABLED)
-
-    btn_escolha1.config(state = DISABLED)
-    btn_escolha2.config(state = DISABLED)
-    btn_reiniciar.config(state = NORMAL)
-
-#Criando botões de escolha de quem começa
-escolhaLabel = Label(frame_escolha, text = 'Quem vai começar?', width = 18, height = 1, bg = cor1, fg = cor4, padx = 1, justify = CENTER, font = ('Tahoma 10 bold'))
-escolhaLabel.place(x = 0, y = 0)
-
-btn_escolha1 = Button(frame_escolha, command = vezjogador1, text = 'JOGADOR 1', width = 10, height = 1, bg = cor2, fg = cor5, font = ('Tahoma 10 bold'))
-btn_escolha1.place(x = 29, y = 25)
-
-btn_escolha2 = Button(frame_escolha, command = vezjogador2, text = 'JOGADOR 2', width = 10, height = 1, bg = cor3, fg = cor5, font = ('Tahoma 10 bold'))
-btn_escolha2.place(x = 29, y = 60)
-
-
-#Criando função para reiniciar o programa
+#Função para voltar o menu
 def reiniciairtudo():
+    ir_menu()
+
     global c1, c2, c3, c4, c5, c6, c7, c8, c9
     global jogador_ganhou, rodada
     #Desativa os botões do jogador 1
@@ -159,7 +69,6 @@ def reiniciairtudo():
     #Ativa os botões de escolha de quem começa
     btn_escolha1.config(state = NORMAL)
     btn_escolha2.config(state = NORMAL)
-    btn_reiniciar.config(state = DISABLED)
 
     #Limpa as variáveis
     c1 = ''
@@ -186,156 +95,18 @@ def reiniciairtudo():
     casa8Label.config(text = c8)
     casa9Label.config(text = c9)
 
-#Criando botão para reiniciar o programa
-reiniciarLabel = Label(frame_reiniciar, text = 'Quer reiniciar \no programa?', width = 18, height = 2, bg = cor1, fg = cor4, padx = 1, justify = CENTER, font = ('Tahoma 10 bold'))
-reiniciarLabel.place(x = 0, y = 0)
 
-btn_reiniciar = Button(frame_reiniciar, command = reiniciairtudo, text = 'REINICIAR', width = 10, height = 1, bg = cor4, fg = cor5, font = ('Tahoma 10 bold'))
-btn_reiniciar.place(x = 29, y = 45)
-btn_reiniciar.config(state = DISABLED)
+#Funções para trocar de tela
+def ir_jogo():
+    frame_Menu.pack_forget()
+    frame_Jogo.pack()
 
-
-#Criando tabuleiro
-#Linhas verticais
-linha1 = Canvas(frame_tabuleiro, width = 3, height = 280)
-linha1.place(x = 290, y = 30)
-
-linha2 = Canvas(frame_tabuleiro, width = 3, height = 280)
-linha2.place(x = 400, y = 30)
-
-#Linhas horizontais
-linha3 = Canvas(frame_tabuleiro, width = 280, height = 3)
-linha3.place(x = 210, y = 115)
-
-linha4 = Canvas(frame_tabuleiro, width = 280, height = 3)
-linha4.place(x = 210, y = 215)
+def ir_menu():
+    frame_Jogo.pack_forget()
+    frame_Menu.pack()
 
 
-#Criando casas do tabuleiro
-#Casas da primeira linha
-casa1Label = Label(frame_tabuleiro, text = c1, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa1Label.place(x = 209, y = 37)
-
-casa2Label = Label(frame_tabuleiro, text = c2, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa2Label.place(x = 310, y = 37)
-
-casa3Label = Label(frame_tabuleiro, text = c3, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa3Label.place(x = 415, y = 37)
-
-#Casas da segunda linha
-casa4Label = Label(frame_tabuleiro, text = c4, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa4Label.place(x = 209, y = 132)
-
-casa5Label = Label(frame_tabuleiro, text = c5, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa5Label.place(x = 310, y = 132)
-
-casa6Label = Label(frame_tabuleiro, text = c6, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa6Label.place(x = 415, y = 132)
-
-#Casas da terceira linha
-casa7Label = Label(frame_tabuleiro, text = c7, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa7Label.place(x = 209, y = 230)
-
-casa8Label = Label(frame_tabuleiro, text = c8, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa8Label.place(x = 310, y = 230)
-
-casa9Label = Label(frame_tabuleiro, text = c9, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
-casa9Label.place(x = 415, y = 230)
-
-
-#Criando Titulos dos jogadores
-textojogador1 = 'JOGADOR 1'
-jogador1Label = Label(frame_jogador1, text = textojogador1, width = 33, height = 1, bg = cor2, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 11 bold'))
-jogador1Label.place(x = 0, y = 5)
-
-textojogador2 = 'JOGADOR 2'
-jogador2Label = Label(frame_jogador2, text = textojogador2, width = 33, height = 1, bg = cor3, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 11 bold'))
-jogador2Label.place(x = 0, y = 5)
-
-
-#Criando os botões do JOGADOR 1
-#Botões da primeira linha
-btn_x1 = Button(frame_jogador1, command = lambda: jogadaCasa1('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x1.place(x = 65, y = 40)
-btn_x1.config(state = DISABLED)
-
-btn_x2 = Button(frame_jogador1, command = lambda: jogadaCasa2('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x2.place(x = 125, y = 40)
-btn_x2.config(state = DISABLED)
-
-btn_x3 = Button(frame_jogador1, command = lambda: jogadaCasa3('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x3.place(x = 185, y = 40)
-btn_x3.config(state = DISABLED)
-
-#Botões da segunda linha
-btn_x4 = Button(frame_jogador1, command = lambda: jogadaCasa4('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x4.place(x = 65, y = 100)
-btn_x4.config(state = DISABLED)
-
-btn_x5 = Button(frame_jogador1, command = lambda: jogadaCasa5('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x5.place(x = 125, y = 100)
-btn_x5.config(state = DISABLED)
-
-btn_x6 = Button(frame_jogador1, command = lambda: jogadaCasa6('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x6.place(x = 185, y = 100)
-btn_x6.config(state = DISABLED)
-
-#Botões da terceira linha
-btn_x7 = Button(frame_jogador1, command = lambda: jogadaCasa7('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x7.place(x = 65, y = 160)
-btn_x7.config(state = DISABLED)
-
-btn_x8 = Button(frame_jogador1, command = lambda: jogadaCasa8('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x8.place(x = 125, y = 160)
-btn_x8.config(state = DISABLED)
-
-btn_x9 = Button(frame_jogador1, command = lambda: jogadaCasa9('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_x9.place(x = 185, y = 160)
-btn_x9.config(state = DISABLED)
-
-
-#Criando os botões do JOGADOR 2
-#Botões da primeira linha
-btn_o1 = Button(frame_jogador2, command = lambda: jogadaCasa1('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o1.place(x = 65, y = 40)
-btn_o1.config(state = DISABLED)
-
-btn_o2 = Button(frame_jogador2, command = lambda: jogadaCasa2('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o2.place(x = 125, y = 40)
-btn_o2.config(state = DISABLED)
-
-btn_o3 = Button(frame_jogador2, command = lambda: jogadaCasa3('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o3.place(x = 185, y = 40)
-btn_o3.config(state = DISABLED)
-
-#Botões da segunda linha
-btn_o4 = Button(frame_jogador2, command = lambda: jogadaCasa4('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o4.place(x = 65, y = 100)
-btn_o4.config(state = DISABLED)
-
-btn_o5 = Button(frame_jogador2, command = lambda: jogadaCasa5('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o5.place(x = 125, y = 100)
-btn_o5.config(state = DISABLED)
-
-btn_o6 = Button(frame_jogador2, command = lambda: jogadaCasa6('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o6.place(x = 185, y = 100)
-btn_o6.config(state = DISABLED)
-
-#Botões da terceira linha
-btn_o7 = Button(frame_jogador2, command = lambda: jogadaCasa7('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o7.place(x = 65, y = 160)
-btn_o7.config(state = DISABLED)
-
-btn_o8 = Button(frame_jogador2, command = lambda: jogadaCasa8('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o8.place(x = 125, y = 160)
-btn_o8.config(state = DISABLED)
-
-btn_o9 = Button(frame_jogador2, command = lambda: jogadaCasa9('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
-btn_o9.place(x = 185, y = 160)
-btn_o9.config(state = DISABLED)
-
-
-#Verificando se tem um ganhador
+#Função para verificar se tem um ganhador
 def verifica_ganhador():
     global jogador_ganhou
     #Verifica se o jogador 1 ganhou na horizontal
@@ -446,9 +217,20 @@ def verifica_ganhador():
     elif c1 != '' and c2 != '' and c3 != '' and c4 != '' and c5 != '' and c6 != '' and c7 != '' and c8 != '' and c9 != '':
         messagebox.showinfo(title = 'Deu empate', message = 'O jogo empatou, joguem novamente.')
         reiniciairtudo()
-            
 
-#Criando as funções das jogadas
+
+#Função de rodadas
+def rodadas_jogo():
+    global rodada
+    global jogador_ganhou
+    
+    if rodada == 1:
+        vezjogador2()
+    elif rodada == 2:
+        vezjogador1()
+
+
+#Funções das jogadas
 def jogadaCasa1(e):
     global c1
     global rodada
@@ -649,15 +431,272 @@ def jogadaCasa9(e):
 
     return rodada
 
-#Criando a função de rodadas
-def rodadas_jogo():
-    global rodada
-    global jogador_ganhou
-    
-    if rodada == 1:
-        vezjogador2()
-    elif rodada == 2:
-        vezjogador1()
-        
 
+#Função para o jogador 1 começar
+def vezjogador1():
+
+    btn_x1.config(state = NORMAL)
+    btn_x2.config(state = NORMAL)
+    btn_x3.config(state = NORMAL)
+    btn_x4.config(state = NORMAL)
+    btn_x5.config(state = NORMAL)
+    btn_x6.config(state = NORMAL)
+    btn_x7.config(state = NORMAL)
+    btn_x8.config(state = NORMAL)
+    btn_x9.config(state = NORMAL)
+
+    btn_o1.config(state = DISABLED)
+    btn_o2.config(state = DISABLED)
+    btn_o3.config(state = DISABLED)
+    btn_o4.config(state = DISABLED)
+    btn_o5.config(state = DISABLED)
+    btn_o6.config(state = DISABLED)
+    btn_o7.config(state = DISABLED)
+    btn_o8.config(state = DISABLED)
+    btn_o9.config(state = DISABLED)
+
+    btn_escolha1.config(state = DISABLED)
+    btn_escolha2.config(state = DISABLED)
+    btn_voltar.config(state = NORMAL)
+
+
+#Função para o jogador 2 começar
+def vezjogador2():
+
+    btn_o1.config(state = NORMAL)
+    btn_o2.config(state = NORMAL)
+    btn_o3.config(state = NORMAL)
+    btn_o4.config(state = NORMAL)
+    btn_o5.config(state = NORMAL)
+    btn_o6.config(state = NORMAL)
+    btn_o7.config(state = NORMAL)
+    btn_o8.config(state = NORMAL)
+    btn_o9.config(state = NORMAL)
+
+    btn_x1.config(state = DISABLED)
+    btn_x2.config(state = DISABLED)
+    btn_x3.config(state = DISABLED)
+    btn_x4.config(state = DISABLED)
+    btn_x5.config(state = DISABLED)
+    btn_x6.config(state = DISABLED)
+    btn_x7.config(state = DISABLED)
+    btn_x8.config(state = DISABLED)
+    btn_x9.config(state = DISABLED)
+
+    btn_escolha1.config(state = DISABLED)
+    btn_escolha2.config(state = DISABLED)
+    btn_voltar.config(state = NORMAL)
+
+
+#Função para começar o jogo Jogador vs Jogador
+def comecar_jogo():
+    ir_jogo()
+
+
+#Frame do jogo
+frame_Jogo = Frame(janela, width = 700, height = 640, bg = cor4)
+frame_Jogo.place(x = 0, y = 0)
+
+#Frame do menu
+frame_Menu = Frame(janela, width = 700, height = 640, bg = cor4)
+frame_Menu.place(x = 0, y = 0)
+
+#Frame do título
+frame_titulo = Frame(janela, width = 700, height = 70, bg = cor4)
+frame_titulo.place(x = 0, y = 0)
+
+frame_escolha = Frame(frame_Jogo, width = 150, height = 100, bg = cor1)
+frame_escolha.place(x = 540, y = 80)
+
+frame_voltarMenu = Frame(frame_Jogo, width = 150, height = 100, bg = cor1)
+frame_voltarMenu.place(x = 10, y = 80)
+
+frame_jogador1 = Frame(frame_Jogo, width = 300, height = 230, bg = cor2)
+frame_jogador1.place(x = 0, y = 410)
+
+frame_jogador2 = Frame(frame_Jogo, width = 300, height = 230, bg = cor3)
+frame_jogador2.place(x = 400, y = 410)
+
+#Criando Título
+textotitulo = 'JOGO DA VELHA'
+tituloLabel = Label(frame_titulo, text = textotitulo, width = 40, height = 2, padx = 7, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+tituloLabel.place(x = 0, y = 0)
+
+
+#Criando os botões do menu
+modoLabel = Label(frame_Menu, text = 'ESCOLHA O MODO DE JOGO', width = 30, height = 2, bg = cor4, fg = cor1, justify = CENTER, font = ('Tahoma 15 bold'))
+modoLabel.place(x = 150, y = 150)
+
+btnJogador = Button(frame_Menu, command = comecar_jogo, text = 'JOGADOR VS JOGADOR', width = 25, height = 2, bg = cor1, fg = cor6, font = ('Tahoma 10 bold'))
+btnJogador.place(x = 240, y = 260)
+
+btnComputador = Button(frame_Menu, command = 0, text = 'JOGADOR VS COMPUTADOR', width = 25, height = 2, bg = cor1, fg = cor6, font = ('Tahoma 10 bold'))
+btnComputador.place(x = 240, y = 330)
+btnComputador.config(state = DISABLED)
+
+breveLabel = Label(frame_Menu, text = 'EM BREVE', width = 10, height = 1, bg = cor2, fg = cor1, justify = CENTER, font = ('Tahoma 7 bold'))
+breveLabel.place(x = 400, y = 325)
+
+
+#Criando botão para voltar para o menu
+voltarLabel = Label(frame_voltarMenu, text = 'Quer voltar \npara o menu?', width = 18, height = 2, bg = cor1, fg = cor4, padx = 1, justify = CENTER, font = ('Tahoma 10 bold'))
+voltarLabel.place(x = 0, y = 5)
+
+btn_voltar = Button(frame_voltarMenu, command = reiniciairtudo, text = 'VOLTAR', width = 10, height = 1, bg = cor4, fg = cor5, font = ('Tahoma 10 bold'))
+btn_voltar.place(x = 29, y = 50)
+
+
+#Criando botões de escolha de quem começa
+escolhaLabel = Label(frame_escolha, text = 'Quem vai começar?', width = 18, height = 1, bg = cor1, fg = cor4, padx = 1, justify = CENTER, font = ('Tahoma 10 bold'))
+escolhaLabel.place(x = 0, y = 0)
+
+btn_escolha1 = Button(frame_escolha, command = vezjogador1, text = 'JOGADOR 1', width = 10, height = 1, bg = cor2, fg = cor5, font = ('Tahoma 10 bold'))
+btn_escolha1.place(x = 29, y = 25)
+
+btn_escolha2 = Button(frame_escolha, command = vezjogador2, text = 'JOGADOR 2', width = 10, height = 1, bg = cor3, fg = cor5, font = ('Tahoma 10 bold'))
+btn_escolha2.place(x = 29, y = 60)
+
+
+#Criando o Tabuleiro do jogo
+#Linhas verticais
+linha1 = Canvas(frame_Jogo, width = 3, height = 280)
+linha1.place(x = 290, y = 100)
+
+linha2 = Canvas(frame_Jogo, width = 3, height = 280)
+linha2.place(x = 400, y = 100)
+
+#Linhas horizontais
+linha3 = Canvas(frame_Jogo, width = 280, height = 3)
+linha3.place(x = 210, y = 185)
+
+linha4 = Canvas(frame_Jogo, width = 280, height = 3)
+linha4.place(x = 210, y = 285)
+
+
+#Criando casas do tabuleiro
+#Casas da primeira linha
+casa1Label = Label(frame_Jogo, text = c1, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa1Label.place(x = 209, y = 107)
+
+casa2Label = Label(frame_Jogo, text = c2, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa2Label.place(x = 310, y = 107)
+
+casa3Label = Label(frame_Jogo, text = c3, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa3Label.place(x = 415, y = 107)
+
+#Casas da segunda linha
+casa4Label = Label(frame_Jogo, text = c4, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa4Label.place(x = 209, y = 202)
+
+casa5Label = Label(frame_Jogo, text = c5, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa5Label.place(x = 310, y = 202)
+
+casa6Label = Label(frame_Jogo, text = c6, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa6Label.place(x = 415, y = 202)
+
+#Casas da terceira linha
+casa7Label = Label(frame_Jogo, text = c7, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa7Label.place(x = 209, y = 300)
+
+casa8Label = Label(frame_Jogo, text = c8, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa8Label.place(x = 310, y = 300)
+
+casa9Label = Label(frame_Jogo, text = c9, width = 4, height = 2, bg = cor4, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 20 bold'))
+casa9Label.place(x = 415, y = 300)
+
+
+#Criando Titulos dos jogadores
+textojogador1 = 'JOGADOR 1'
+jogador1Label = Label(frame_jogador1, text = textojogador1, width = 33, height = 1, bg = cor2, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 11 bold'))
+jogador1Label.place(x = 0, y = 5)
+
+textojogador2 = 'JOGADOR 2'
+jogador2Label = Label(frame_jogador2, text = textojogador2, width = 33, height = 1, bg = cor3, fg = cor1, relief = FLAT, justify = CENTER, font = ('Tahoma 11 bold'))
+jogador2Label.place(x = 0, y = 5)
+
+
+#Criando os botões do JOGADOR 1
+#Botões da primeira linha
+btn_x1 = Button(frame_jogador1, command = lambda: jogadaCasa1('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x1.place(x = 65, y = 40)
+btn_x1.config(state = DISABLED)
+
+btn_x2 = Button(frame_jogador1, command = lambda: jogadaCasa2('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x2.place(x = 125, y = 40)
+btn_x2.config(state = DISABLED)
+
+btn_x3 = Button(frame_jogador1, command = lambda: jogadaCasa3('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x3.place(x = 185, y = 40)
+btn_x3.config(state = DISABLED)
+
+#Botões da segunda linha
+btn_x4 = Button(frame_jogador1, command = lambda: jogadaCasa4('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x4.place(x = 65, y = 100)
+btn_x4.config(state = DISABLED)
+
+btn_x5 = Button(frame_jogador1, command = lambda: jogadaCasa5('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x5.place(x = 125, y = 100)
+btn_x5.config(state = DISABLED)
+
+btn_x6 = Button(frame_jogador1, command = lambda: jogadaCasa6('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x6.place(x = 185, y = 100)
+btn_x6.config(state = DISABLED)
+
+#Botões da terceira linha
+btn_x7 = Button(frame_jogador1, command = lambda: jogadaCasa7('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x7.place(x = 65, y = 160)
+btn_x7.config(state = DISABLED)
+
+btn_x8 = Button(frame_jogador1, command = lambda: jogadaCasa8('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x8.place(x = 125, y = 160)
+btn_x8.config(state = DISABLED)
+
+btn_x9 = Button(frame_jogador1, command = lambda: jogadaCasa9('X'), text = 'X', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_x9.place(x = 185, y = 160)
+btn_x9.config(state = DISABLED)
+
+
+#Criando os botões do JOGADOR 2
+#Botões da primeira linha
+btn_o1 = Button(frame_jogador2, command = lambda: jogadaCasa1('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o1.place(x = 65, y = 40)
+btn_o1.config(state = DISABLED)
+
+btn_o2 = Button(frame_jogador2, command = lambda: jogadaCasa2('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o2.place(x = 125, y = 40)
+btn_o2.config(state = DISABLED)
+
+btn_o3 = Button(frame_jogador2, command = lambda: jogadaCasa3('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o3.place(x = 185, y = 40)
+btn_o3.config(state = DISABLED)
+
+#Botões da segunda linha
+btn_o4 = Button(frame_jogador2, command = lambda: jogadaCasa4('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o4.place(x = 65, y = 100)
+btn_o4.config(state = DISABLED)
+
+btn_o5 = Button(frame_jogador2, command = lambda: jogadaCasa5('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o5.place(x = 125, y = 100)
+btn_o5.config(state = DISABLED)
+
+btn_o6 = Button(frame_jogador2, command = lambda: jogadaCasa6('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o6.place(x = 185, y = 100)
+btn_o6.config(state = DISABLED)
+
+#Botões da terceira linha
+btn_o7 = Button(frame_jogador2, command = lambda: jogadaCasa7('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o7.place(x = 65, y = 160)
+btn_o7.config(state = DISABLED)
+
+btn_o8 = Button(frame_jogador2, command = lambda: jogadaCasa8('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o8.place(x = 125, y = 160)
+btn_o8.config(state = DISABLED)
+
+btn_o9 = Button(frame_jogador2, command = lambda: jogadaCasa9('O'), text = 'O', width = 4, height= 2, bg = cor4, fg = cor1, font = ('Tahoma 12 bold'), relief = RAISED, overrelief = RIDGE)
+btn_o9.place(x = 185, y = 160)
+btn_o9.config(state = DISABLED)
+
+
+
+frame_Menu.pack()
 janela.mainloop()
